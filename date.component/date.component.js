@@ -6,6 +6,8 @@ var DateComponent = (function () {
     function DateComponent(dateService) {
         this.dateService = dateService;
         this.doNotCloseOnDateSet = false;
+        this.min = null;
+        this.max = null;
         this.selectedDateChange = new core_1.EventEmitter();
         this.closeDatePicker = new core_1.EventEmitter();
         this.showMonthSelection = false;

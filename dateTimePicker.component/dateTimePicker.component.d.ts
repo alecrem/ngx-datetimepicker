@@ -12,6 +12,8 @@ export declare class DateTimePickerComponent implements OnInit, ControlValueAcce
     disableButton: boolean;
     disablePicker: boolean;
     doNotCloseOnDateSet: boolean;
+    min: string;
+    max: string;
     selectedDateTimeChange: EventEmitter<Date>;
     offClick(event: any): void;
     pickerVisible: boolean;
