@@ -12,7 +12,9 @@ export declare class DateService {
     formatMobileYYYYMMDDTHHMM(date: Date): string;
     formatMMDDYYYY(date: Date): string;
     formatMMDDYYYY_HHMM_AMPM(date: Date): string;
+    formatMMDDYYYY_HHMM(date: Date): string;
     formatHHMM_AMPM(hour: number, minute: number): string;
+    formatHHMM(hour: number, minute: number): string;
     getCurrentMonthDays(month: number, year: number): dayOfTheMonth[];
     getDateList(Month: number, Year: number): dayOfTheMonth[];
     getPreviousMonthDays(Month: number, Year: number): dayOfTheMonth[];

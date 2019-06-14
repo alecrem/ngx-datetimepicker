@@ -12,6 +12,7 @@ var TimePickerComponent = (function () {
         this.disableInput = false;
         this.disableButton = false;
         this.disablePicker = false;
+        this.use24HourClock = false;
         this.selectedTimeChange = new core_1.EventEmitter();
         this.pickerVisible = false;
         this.isMobile = isMobileService.isMobile;
@@ -29,6 +30,9 @@ var TimePickerComponent = (function () {
             }
             this.selectedHour = parseInt(this.selectedTime.split(':')[0]);
             this.selectedMinute = parseInt(this.selectedTime.split(':')[1]);
+            if (this.use24HourClock) {
+                return this.dateService.formatHHMM(this.selectedHour, this.selectedMinute);
+            }
             return this.dateService.formatHHMM_AMPM(this.selectedHour, this.selectedMinute);
         },
         enumerable: true,
@@ -111,7 +115,7 @@ var TimePickerComponent = (function () {
     TimePickerComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'ngx-time-picker',
-                    template: "<div [ngSwitch]=\"isMobile\"> <div *ngSwitchCase=\"true\"> <input type=\"time\" [disabled]=\"disableInput || disablePicker\" [placeholder]=\"placeholder\" [value]=\"mobileFormattedTime\" (change)=\"setMobileFormattedTime($event.target.value)\" /> </div> <div *ngSwitchDefault> <div class=\"ngx-picker\"> <input type=\"text\" [disabled]=\"disableInput || disablePicker\" [placeholder]=\"placeholder\" [value]=\"formattedTime\" (change)=\"setFormattedTime($event.target.value)\" (click)=\"pickerVisible = !pickerVisible\" /> <button type=\"button\" [disabled]=\"disableButton || disablePicker\" (click)=\"pickerVisible = !pickerVisible\"> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"  width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"> <path fill=\"#000000\" d=\"M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z\" /> </svg> </button> <div class=\"calendar\" [hidden]=\"!pickerVisible\"> <ngx-time [selectedHour]=\"selectedHour\" [selectedMinute]=\"selectedMinute\" (selectedHourChange)=\"setHourNow($event)\" (selectedMinuteChange)=\"setMinuteNow($event)\"></ngx-time> <div class=\"calendar--footer\"> <button type=\"button\" class=\"ngx-picker--btn ngx-picker--btn__now\" (click)=\"setTimeToNow()\">Now</button> <button type=\"button\" class=\"ngx-picker--btn ngx-picker--btn__close\" (click)=\"closePicker()\">Close</button> </div> </div> </div> </div> </div> ",
+                    template: "<div [ngSwitch]=\"isMobile\"> <div *ngSwitchCase=\"true\"> <input type=\"time\" [disabled]=\"disableInput || disablePicker\" [placeholder]=\"placeholder\" [value]=\"mobileFormattedTime\" (change)=\"setMobileFormattedTime($event.target.value)\" /> </div> <div *ngSwitchDefault> <div class=\"ngx-picker\"> <input type=\"text\" [disabled]=\"disableInput || disablePicker\" [placeholder]=\"placeholder\" [value]=\"formattedTime\" (change)=\"setFormattedTime($event.target.value)\" (click)=\"pickerVisible = !pickerVisible\" /> <button type=\"button\" [disabled]=\"disableButton || disablePicker\" (click)=\"pickerVisible = !pickerVisible\"> <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\"  width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"> <path fill=\"#000000\" d=\"M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z\" /> </svg> </button> <div class=\"calendar\" [hidden]=\"!pickerVisible\"> <ngx-time [selectedHour]=\"selectedHour\" [selectedMinute]=\"selectedMinute\" [use24HourClock]=\"use24HourClock\" (selectedHourChange)=\"setHourNow($event)\" (selectedMinuteChange)=\"setMinuteNow($event)\"></ngx-time> <div class=\"calendar--footer\"> <button type=\"button\" class=\"ngx-picker--btn ngx-picker--btn__now\" (click)=\"setTimeToNow()\">Now</button> <button type=\"button\" class=\"ngx-picker--btn ngx-picker--btn__close\" (click)=\"closePicker()\">Close</button> </div> </div> </div> </div> </div> ",
                     encapsulation: core_1.ViewEncapsulation.None,
                     providers: [
                         {
@@ -134,6 +138,7 @@ var TimePickerComponent = (function () {
         'disableInput': [{ type: core_1.Input },],
         'disableButton': [{ type: core_1.Input },],
         'disablePicker': [{ type: core_1.Input },],
+        'use24HourClock': [{ type: core_1.Input },],
         'selectedTimeChange': [{ type: core_1.Output },],
         'offClick': [{ type: core_1.HostListener, args: ['document:click', ['$event'],] },],
     };

@@ -4,6 +4,7 @@ export declare class TimeComponent implements OnInit {
     selectedHourChange: EventEmitter<number>;
     selectedMinute: number;
     selectedMinuteChange: EventEmitter<number>;
+    use24HourClock: boolean;
     selectedClock: string;
     hours: string[];
     minutes: string[];

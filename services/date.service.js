@@ -37,6 +37,14 @@ var DateService = (function () {
         var minutes = date.getMinutes();
         return this.formatMMDDYYYY(date) + " " + this.formatHHMM_AMPM(hours, minutes);
     };
+    DateService.prototype.formatMMDDYYYY_HHMM = function (date) {
+        if (!date || typeof date == 'string') {
+            return '';
+        }
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        return this.formatMMDDYYYY(date) + " " + this.formatHHMM(hours, minutes);
+    };
     DateService.prototype.formatHHMM_AMPM = function (hour, minute) {
         if (hour == null || minute == null) {
             return '';
@@ -52,6 +60,14 @@ var DateService = (function () {
             return "12:" + formattedMinute + " am";
         }
         return hour + ":" + formattedMinute + " am";
+    };
+    DateService.prototype.formatHHMM = function (hour, minute) {
+        if (hour == null || minute == null) {
+            return '';
+        }
+        var formattedHour = (!hour ? '00' : (hour <= 9 ? "0" + hour : hour));
+        var formattedMinute = (!minute ? '00' : (minute <= 9 ? "0" + minute : minute));
+        return formattedHour + ":" + formattedMinute;
     };
     DateService.prototype.getCurrentMonthDays = function (month, year) {
         var dayOfTheMonth = new Date(year, month - 1, 1);

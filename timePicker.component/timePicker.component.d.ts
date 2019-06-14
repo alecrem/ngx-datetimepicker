@@ -11,6 +11,7 @@ export declare class TimePickerComponent implements ControlValueAccessor {
     disableInput: boolean;
     disableButton: boolean;
     disablePicker: boolean;
+    use24HourClock: boolean;
     selectedTimeChange: EventEmitter<string>;
     offClick(event: any): void;
     pickerVisible: boolean;

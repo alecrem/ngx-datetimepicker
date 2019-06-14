@@ -7,6 +7,7 @@ export declare class DateComponent implements OnInit {
     doNotCloseOnDateSet: boolean;
     min: string;
     max: string;
+    use24HourClock: boolean;
     selectedDateChange: EventEmitter<Date>;
     closeDatePicker: EventEmitter<boolean>;
     yearSelect: ElementRef;
